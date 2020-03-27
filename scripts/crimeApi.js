@@ -43,9 +43,17 @@ const crimeApi = {
   getOffenseCountByLocation: function(offenseType, countByLocation) {
     fetch(crimeApiUrls.countByOffenseUrl(offenseType, countByLocation))
       .then(parseResponse)
-      .then(function(data) {
-        console.log(data);
-        let parsedData = parseOffenseCountDataSet(data);
+      .then(function(apiDataObj) {
+        console.log(apiDataObj);
+        if (apiDataObj.data.length === 0) {
+          throw new Error(
+            'No data found for offense type: ' +
+              offenseType +
+              ' at location :' +
+              countByLocation.getLocationType()
+          );
+        }
+        let parsedData = parseOffenseCountDataSet(apiDataObj);
         drawOffenseCountChart(
           parsedData.trimmedDataSet,
           'Crime Count',
@@ -57,7 +65,7 @@ const crimeApi = {
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
-        // return erroHandler(error);
+        noDataFound('offenseCountChart');
       });
   },
   getOffenderCountByProperty: function(
@@ -173,6 +181,16 @@ class CountByLocation {
       return `regions/${this.regionName}`;
     } else {
       return `states/${this.statecode}`;
+    }
+  }
+
+  getLocationType() {
+    if (this.getNationalCount) {
+      return 'national';
+    } else if (this.getCountByRegion) {
+      return `region ${this.regionName}`;
+    } else {
+      return `state ${this.statecode}`;
     }
   }
 }

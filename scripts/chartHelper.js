@@ -8,6 +8,12 @@ function drawOffenseCountChart(
   min,
   labels
 ) {
+  //make sure the 404 image is hidden before painitng the chart
+  let $notFoundSpan = $('.' + 'offenseCountChart' + 'NotFound');
+  if (!$notFoundSpan.hasClass('hide')) {
+    $notFoundSpan.addClass('hide');
+  }
+
   new Chart(document.getElementById('offenseCountChart'), {
     type: 'line',
     data: {
@@ -42,4 +48,18 @@ function drawOffenseCountChart(
       }
     }
   });
+}
+
+function noDataFound(canvasId) {
+  // let errorSpan = document.createElement('span');
+  // //add a 404 data not found message to it
+  // let errorPararaph = document.createElement('p');
+  // errorPararaph.setAttribute('class', 'title is-2');
+  // errorPararaph.textContent = '404 Data Not Found! Please try another query.';
+  // //font-awesome image
+  // let errorIcon = document.createElement('i');
+  // errorIcon.setAttribute('class', 'fas fa-exclamation-triangle')
+  // //<i class="fas fa-exclamation-triangle"></i>
+  //add to canvas
+  $('.' + canvasId + 'NotFound').removeClass('hide');
 }
