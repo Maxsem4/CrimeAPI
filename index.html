@@ -1,148 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-</head>
-<body>
-  
-  <form action = "">
-    <h1>Select A State</h1>
-    <fieldset>
-    <select id = "selState">
-    <!-- <option value = "HI0010000">Hawaii Police</option> -->
-
-    </select>
-    <input type = "button"
-      value = "change state"
-      onclick = "changeState()" />
-    </fieldset>
-   </form>
-   
-   <form action = "">
-    <h1>Select A Offense</h1>
-    <fieldset>
-    <select id = "selOffense">
-    <!-- <option value = "HI0010000">Hawaii Police</option> -->
-
-    </select>
-    <input type = "button"
-      value = "change offense"
-      onclick = "changeOffense()" />
-    </fieldset>
-   </form>
-
-   <form action = "">
-    <h1>Select a Offense Variable</h1>
-    <fieldset>
-    <select id = "selOffenseVariable">
-    <!-- <option value = "HI0010000">Hawaii Police</option> -->
-
-    </select>
-    <input type = "button"
-      value = "change offense variable"
-      onclick = "changeOffenseVariable()" />
-    </fieldset>
-   </form>
-    <script>
-let offenses = ["aggravated-assault","all-other-larceny","all-other-offenses","animal-cruelty","arson","assisting-or-promoting-prostitution","bad-checks","betting","bribery","burglary-breaking-and-entering","counterfeiting-forgery","credit-card-automated-teller-machine-fraud","destruction-damage-vandalism-of-property","driving-under-the-influence","drug-equipment-violations","drug-violations","drunkenness","embezzlement","extortion-blackmail","false-pretenses-swindle-confidence-game","fondling","gambling-equipment-violation","hacking-computer-invasion","human-trafficking-commerical-sex-acts","human-trafficking-commerical-involuntary-servitude","identity-theft","impersonation","incest","intimidation","justifiable-homicide","kidnapping-abduction","motor-vehicle-theft","murder-and-nonnegligent-manslaughter","negligent-manslaughter","operating-promoting-assiting-gambling","curfew-loitering-vagrancy-violations","peeping-tom","pocket-picking","pornography-obscence-material","prostitution","purchasing-prostitution","purse-snatching","rape","robbery","sexual-assult-with-an-object","sex-offenses-non-forcible","shoplifting","simple-assault","sodomy","sports-tampering","statutory-rape","stolen-property-offenses","theft-from-building","theft-from-coin-operated-machine-or-device","theft-from-motor-vehicle","theft-of-motor-vehicle-parts-or-accessories","theft-from-motor-vehicle","weapon-law-violation","welfare-fraud","wire-fraud","not-specified","liquor-law-violations","crime-against-person","crime-against-property","crime-against-society","assault-offenses","homicide-offenses","human-trafficking-offenses","sex-offenses","sex-offenses-non-forcible","fraud-offenses","larceny-theft-offenses","drugs-narcotic-offenses","gambling-offenses","prostitution-offenses","all-offenses"]
-let offenseVariable = ["COUNT","WEAPONS","LINKEDOFFENSE","SUSPECTUSING","CRIMINAL_ACTIVITY","PROPERTY_RECOVERED","PROPERTY_STOLEN","BIAS"]
-let endpoint = selState
-//toggle between hiding and showing the dropdown content */
-
-        // from dropdownList.html
- //**
-  function changeState(){
-    
-  //let selColor = document.getElementById("selColor");
-  let endpoint3 = selState.value
-  let APIKey3 = 'lnCSsYjnRgflhaB0c4Uc78F9LivWRTDMPUP1Bsu1'
-  //var color = selColor.value;
-  //document.body.style.backgroundColor = color;
-  
-  let queryURL3 = 'https://api.usa.gov/crime/fbi/sapi/api/summarized/state/' + endpoint3 + '/rape/2016/2017?API_KEY=' + APIKey3 
-  fetch(queryURL3)
-                .then(function (response) {
-                  // Decode the JSON response.body
-                  return response.json()
-                })
-                // We store all of the retrieved data inside of an object called "data"
-                // NOTE: we could name the variable for the function parameter anything
-                // that makes sense for our application. It does not need to be called data.
-            
-            
-                .then(function (list2) { 
-                  // Log the queryURL
-                  console.log(queryURL3)
-                  // Log the object retreived from the API
-                  console.log(list2)
-                })
-
-  } // end function
-    //}
-
-  let APIKey2 = 'lnCSsYjnRgflhaB0c4Uc78F9LivWRTDMPUP1Bsu1'
-           // let endpoint = 'HI0010000'
-            
-              //let queryURL2 = 'https://api.usa.gov/crime/fbi/sapi/api/agencies/' + endpoint  + '?api_key=' + APIKey2
-               let queryURL2 = 'https://api.usa.gov/crime/fbi/sapi/api/states?api_key=lnCSsYjnRgflhaB0c4Uc78F9LivWRTDMPUP1Bsu1'
-  //all people convincted age and states
-              fetch(queryURL2)
-                .then(function (response) {
-                  // Decode the JSON response.body
-                  return response.json()
-                })
-                // We store all of the retrieved data inside of an object called "data"
-                // NOTE: we could name the variable for the function parameter anything
-                // that makes sense for our application. It does not need to be called data.
-            
-            
-                .then(function (list) { 
-                  // Log the queryURL
-                  console.log(queryURL2)
-                  // Log the object retreived from the API
-                  console.log(list)
-
-                  for(i=0;i < list.results.length  ;i++){
-                  let iconCode5 = list.results[i].state_abbr
-                   let states = [iconCode5];
-                   //alert (iconCode5);
-                   //console.log(states);
-                   for(j=0;j< states.length; j++){
-                   let option = document.createElement("option")
-                   txt = document.createTextNode(states[j]);
-                   option.appendChild(txt);
-                   selState.insertBefore(option,selState.lastChild);
-                  }
-                   
-                 }
-                 for(k=0;k< offenses.length; k++){
-                   let option2 = document.createElement("option")
-                   txt2 = document.createTextNode(offenses[k]);
-                   option2.appendChild(txt2);
-                   selOffense.insertBefore(option2,selOffense.lastChild);
-                 }
-                 for(l=0;l< offenseVariable.length; l++){
-                   let option3 = document.createElement("option")
-                   txt3 = document.createTextNode(offenseVariable[l]);
-                   option3.appendChild(txt3);
-                   selOffenseVariable.insertBefore(option3,selOffenseVariable.lastChild);
-                 }
-//https://api.usa.gov/crime/fbi/sapi/api/data/nibrs/offense/13/monthly/2016/2017?agencies/{ori}/{variable}
-                  //https://api.usa.gov/crime/fbi/sapi/api/participation/states/AL?api_key=lnCSsYjnRgflhaB0c4Uc78F9LivWRTDMPUP1Bsu1
-                  //https://crime-data-explorer.fr.cloud.gov/api
-
-                  // https://api.usa.gov/crime/fbi/sapi/api/agencies?api_key=iiHnOKfno2Mgkt5AynpvPpUQTEyxE77jo1RU8PIv - list of different agencies
-                 // }
-                  // all offenses https://api.usa.gov/crime/fbi/sapi/api/arrest/states/offense/ak/all/2000/2001?API_KEY=iiHnOKfno2Mgkt5AynpvPpUQTEyxE77jo1RU8PIv
-
-
-
-                })
-  
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="bulma.min.css" />
+    <title>Crime App</title>
+  </head>
+  <body>
+    <nav class="level">
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Home</a>
+      </p>
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Menu</a>
+      </p>
+      <p class="level-item has-text-centered">
+        <img
+          src="https://bulma.io/images/bulma-type.png"
+          alt=""
+          style="height: 30px;"
+        />
+      </p>
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Reservations</a>
+      </p>
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Contact</a>
+      </p>
+    </nav>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Crime API
+          </h1>
+          <h2 class="subtitle"></h2>
+        </div>
+      </div>
+    </section>
+    <div class="columns">
+      <div class="column is-two-fifths">
+        <section class="section">
+          <div class="container">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" value="national" name="locationType" />
+                National
+              </label>
+              <label class="radio">
+                <input type="radio" value="regional" name="locationType" />
+                Regional
+              </label>
+              <label class="radio">
+                <input type="radio" value="state" name="locationType" />
+                State
+              </label>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="select" id="regionType">
+              <select>
+                <option>Select Region</option>
+                <option>Northeast</option>
+                <option>Midwest</option>
+                <option>South</option>
+                <option>West</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="select" id="stateType">
+              <select>
+                <option>Select State</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="select" id="offType">
+              <select>
+                <option>Select Offence</option>
+                <option>Aggravated Assault</option>
+                <option value="burglary">Burglary</option>
+                <option value="larceny">Larceny</option>
+                <option value="motor-vehicle-theft"
+                  >Motor Vehicule Theft</option
+                >
+                <option value="homicide">Homicide</option>
+                <option value="rape">Rape</option>
+                <option value="robbery">Robbery</option>
+                <option value="arson">Arson</option>
+                <option value="violent-crime">Arson</option>
+                <option value="property-crime">Property Crime</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="control">
+            <label class="radio">
+              <input type="radio" value="age" name="offProp" />
+              Age
+            </label>
+            <label class="radio">
+              <input type="radio" value="race" name="offProp" />
+              Race
+            </label>
+            <label class="radio">
+              <input type="radio" value="sex" name="offProp" />
+              Sex
+            </label>
+          </div>
+        </section>
+        <section class="section">
+          <div class="field is-grouped">
+            <div id="searchBtn" class="control">
+              <button class="button is-primary">Submit</button>
+            </div>
+            <div class="control">
+              <button class="button is-primary is-light">Cancel</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="column">
+        <section class="section">
+          <div class="container">
+            <h1 class="title">Stats Section</h1>
+            <h2 class="subtitle">
+              A simple container to divide your page into
+              <strong>sections</strong>, like the one you're currently reading
+            </h2>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <h1 class="title">Graph Section</h1>
+            <h2 class="subtitle">
+              <div>
+                <canvas
+                  width="600"
+                  height="400"
+                  id="offenseCountChart"
+                ></canvas>
+                <!-- <canvas id="crimeGraph2"></canvas> -->
+              </div>
+            </h2>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Bulma</strong> by
+          <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
+          licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
+          website content is licensed
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            >CC BY NC SA 4.0</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="./chartHelper.js"></script>
+    <script src="./crimapi.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
