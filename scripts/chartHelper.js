@@ -21,8 +21,11 @@ function drawOffenseCountChart(
 
   //clear the current chartinstance if any
   if (chartCanvasId.includes('offenderProp')) {
+    //make sure that the heading is visible
+    $('#offensePropHeading').removeClass('hide');
     if (currentOffenderPropChart !== null) currentOffenderPropChart.destroy();
   } else {
+    $('#offenseCountHeading').removeClass('hide');
     if (currentOffenseCountChart !== null) currentOffenseCountChart.destroy();
   }
 

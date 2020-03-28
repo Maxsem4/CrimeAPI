@@ -90,7 +90,7 @@ const crimeApi = {
           'offenderProp',
           parsedData.trimmedDataSet,
           'Offense Count by Offender property :' + offenderProperty,
-          `Recent Trend for ${offenderProperty} in  ${countByLocation.getLocationType()}`,
+          `Recent Trend for ${offenseType} by ${offenderProperty} in  ${countByLocation.getLocationType()}`,
           parsedData.max,
           parsedData.min,
           parsedData.labels,
