@@ -12,27 +12,6 @@
     <title>Crime App</title>
   </head>
   <body>
-    <nav class="level">
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Home</a>
-      </p>
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Menu</a>
-      </p>
-      <p class="level-item has-text-centered">
-        <img
-          src="https://bulma.io/images/bulma-type.png"
-          alt=""
-          style="height: 30px;"
-        />
-      </p>
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Reservations</a>
-      </p>
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Contact</a>
-      </p>
-    </nav>
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
@@ -141,7 +120,7 @@
             <div class="select" id="offType">
               <select>
                 <option>Select Offense</option>
-                <option>Aggravated Assault</option>
+                <option value="aggravated-assault">Aggravated Assault</option>
                 <option value="burglary">Burglary</option>
                 <option value="larceny">Larceny</option>
                 <option value="motor-vehicle-theft"
@@ -176,7 +155,7 @@
         <section class="section">
           <div class="field is-grouped">
             <div id="searchBtn" class="control">
-              <button class="button is-primary">Submit</button>
+              <button class="button is-primary">Search</button>
             </div>
             <div class="control">
               <button class="button is-primary is-light">Cancel</button>
@@ -220,14 +199,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>Bulma</strong> by
-          <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
-          licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-          website content is licensed
-          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-            >CC BY NC SA 4.0</a
-          >
+          <strong>Crime API</strong> by Maxime Semegen, Sandy Boon & Mike Hoyt.
         </p>
       </div>
     </footer>
