@@ -1,7 +1,32 @@
 $(document).ready(function() {
   //define click handler for search buttons
-  $('#searchBtn').click(getAndShowData);
+$('#searchBtn').click(getAndShowData);
+  //select default radio button
+ $(":radio[name='locationType'][value='national']").attr('checked', 'checked');
+ $('#stateType').hide();
+ $('#offType').show();
+ $('#regionType').hide();
+  radioButton()
 });
+
+function radioButton() {
+  $("input[name=locationType]:radio").click(function () {
+      if ($('input[name=locationType]:checked').val() == "state") {
+          $('#stateType').show();
+          $('#offType').show();
+          $('#regionType').hide();
+      } else if ($('input[name=locationType]:checked').val() == "regional") {
+          $('#stateType').hide();
+          $('#offType').show();
+          $('#regionType').show();
+      }
+      else if ($('input[name=locationType]:checked').val() == "national"){
+      $('#stateType').hide();
+      $('#offType').show();
+      $('#regionType').hide();
+    }
+  });
+};
 
 function getAndShowData(event) {
   event.preventDefault();
