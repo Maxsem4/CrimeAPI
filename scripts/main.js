@@ -55,7 +55,7 @@ function getLocationName(locationType) {
   let locationName = null;
   switch (locationType) {
     case 'national':
-    break;
+      break;
     case 'regional':
       locationName = $('#regionType :selected').val();
       break;
