@@ -23,8 +23,15 @@ function drawOffenseCountChart(
   if (chartCanvasId.includes('offenderProp')) {
     //make sure that the heading is visible
     $('#offensePropHeading').removeClass('hide');
+    //make sure the data not found warning is hidden
+    if (!$('.offenderPropChartNotFound').hasClass('hide')) {
+      $('.offenderPropChartNotFound').addClass('hide');
+    }
     if (currentOffenderPropChart !== null) currentOffenderPropChart.destroy();
   } else {
+    if (!$('.offenseCountChartNotFound').hasClass('hide')) {
+      $('.offenseCountChartNotFound').addClass('hide');
+    }
     $('#offenseCountHeading').removeClass('hide');
     if (currentOffenseCountChart !== null) currentOffenseCountChart.destroy();
   }
@@ -38,7 +45,20 @@ function drawOffenseCountChart(
           data: crimeData,
           label: labelHeading, // 'Monthly Crime rate',
           borderColor: '#3e95cd',
-          fill: false
+          fill: false,
+          backgroundColor: [
+            '#3e95cd',
+            '#8e5ea2',
+            '#3cba9f',
+            '#e8c3b9',
+            '#c45850',
+            '#FF6600',
+            '#FFBF00',
+            '#AA00FF',
+            '#00FFFF',
+            '#00FF7F',
+            '#007FFF'
+          ]
         }
       ]
     },

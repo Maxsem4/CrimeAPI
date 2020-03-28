@@ -1,32 +1,62 @@
 $(document).ready(function() {
   //define click handler for search buttons
-$('#searchBtn').click(getAndShowData);
+  $('#searchBtn').click(getAndShowData);
   //select default radio button
- $(":radio[name='locationType'][value='national']").attr('checked', 'checked');
- $('#stateType').hide();
- $('#offType').show();
- $('#regionType').hide();
-  radioButton()
+  $(":radio[name='locationType'][value='national']").attr('checked', 'checked');
+  $('#stateType')
+    .parents('.section')
+    .first()
+    .addClass('hide');
+  //   $('#offType').show();
+  $('#regionType')
+    .parents('.section')
+    .first()
+    .addClass('hide');
+  radioButton();
 });
 
 function radioButton() {
-  $("input[name=locationType]:radio").click(function () {
-      if ($('input[name=locationType]:checked').val() == "state") {
-          $('#stateType').show();
-          $('#offType').show();
-          $('#regionType').hide();
-      } else if ($('input[name=locationType]:checked').val() == "regional") {
-          $('#stateType').hide();
-          $('#offType').show();
-          $('#regionType').show();
-      }
-      else if ($('input[name=locationType]:checked').val() == "national"){
-      $('#stateType').hide();
-      $('#offType').show();
-      $('#regionType').hide();
+  $('input[name=locationType]:radio').click(function() {
+    if ($('input[name=locationType]:checked').val() === 'state') {
+      $('#stateType')
+        .parents('.section')
+        .removeClass('hide');
+      hideRegionalDropDown();
+    } else if ($('input[name=locationType]:checked').val() === 'regional') {
+      hideStatesDropDown();
+      $('#regionType')
+        .parents('.section')
+        .removeClass('hide');
+    } else if ($('input[name=locationType]:checked').val() === 'national') {
+      hideStatesDropDown();
+      hideRegionalDropDown();
     }
   });
-};
+}
+
+function hideStatesDropDown() {
+  if (
+    !$('#stateType')
+      .parents('.section')
+      .hasClass('hide')
+  ) {
+    $('#stateType')
+      .parents('.section')
+      .addClass('hide');
+  }
+}
+
+function hideRegionalDropDown() {
+  if (
+    !$('#regionType')
+      .parents('.section')
+      .hasClass('hide')
+  ) {
+    $('#regionType')
+      .parents('.section')
+      .addClass('hide');
+  }
+}
 
 function getAndShowData(event) {
   event.preventDefault();

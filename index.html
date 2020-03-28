@@ -24,9 +24,10 @@
     </section>
     <div class="columns">
       <div class="column is-two-fifths">
-        <section class="section">
+        <section class="section topSection">
           <div class="container">
             <div class="control">
+              <span class="title is-5 menuTitle">Crime Location: </span>
               <label class="radio">
                 <input type="radio" value="national" name="locationType" />
                 National
@@ -42,8 +43,9 @@
             </div>
           </div>
         </section>
-        <section class="section">
+        <section class="section dropDownSection hide">
           <div class="container">
+            <span class="title is-5 menuTitle">Please select a region: </span>
             <div class="select" id="regionType">
               <select>
                 <option>Select Region</option>
@@ -55,8 +57,9 @@
             </div>
           </div>
         </section>
-        <section class="section">
+        <section class="section dropDownSection hide">
           <div class="container">
+            <span class="title is-5 menuTitle">Please select a sate: </span>
             <div class="select" id="stateType">
               <select>
                 <option>Select State</option>
@@ -115,8 +118,11 @@
             </div>
           </div>
         </section>
-        <section class="section">
+        <section class="section dropDownSection">
           <div class="container">
+            <span class="title is-5 menuTitle"
+              >Please select type of crime:
+            </span>
             <div class="select" id="offType">
               <select>
                 <option>Select Offense</option>
@@ -136,7 +142,10 @@
             </div>
           </div>
         </section>
-        <section class="section">
+        <section class="section dropDownSection">
+          <span class="title is-5 menuTitle"
+            >Please select an offendor property :
+          </span>
           <div class="control">
             <label class="radio">
               <input type="radio" value="age" name="offProp" />
@@ -152,8 +161,8 @@
             </label>
           </div>
         </section>
-        <section class="section">
-          <div class="field is-grouped">
+        <section class="section dropDownSection">
+          <div id="searchBtnDiv" class="field is-grouped">
             <div id="searchBtn" class="control">
               <button class="button is-primary">Search</button>
             </div>
@@ -183,7 +192,9 @@
         </section>
         <section class="section">
           <div class="container">
-            <h1 id="offensePropHeading" class="title hide">Offender Property Graph</h1>
+            <h1 id="offensePropHeading" class="title hide">
+              Offender Property Graph
+            </h1>
             <div>
               <div class="hide has-text-danger offenderPropChartNotFound">
                 <i class="fas fa-exclamation-triangle"></i>
