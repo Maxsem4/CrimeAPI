@@ -85,6 +85,14 @@ const crimeApi = {
       .then(parseResponse)
       .then(function(data) {
         console.log(data);
+        if (data.data.length === 0) {
+          throw new Error(
+            'No data found for offense type: ' +
+              offenseType +
+              ' at location :' +
+              countByLocation.getLocationType()
+          );
+        }
         let parsedData = parseOffenderPropTypeData(data);
         drawOffenseCountChart(
           'offenderProp',
@@ -148,12 +156,6 @@ function parseOffenderPropTypeData(offernderCrimeObj) {
   let offenseCountMap = new Map();
 
   filteredData.forEach(element => {
-    if (element.value <= parsedData.min) {
-      parsedData.min = element.value;
-    }
-    if (element.value >= parsedData.max) {
-      parsedData.max = element.value;
-    }
     if (typeof offenseCountMap.get(element.key) === 'undefined') {
       offenseCountMap.set(element.key, 0);
     } else {
@@ -161,7 +163,16 @@ function parseOffenderPropTypeData(offernderCrimeObj) {
       let count = offenseCountMap.get(element.key);
       offenseCountMap.set(element.key, count + element.value);
     }
+    if (offenseCountMap.get(element.key) <= parsedData.min) {
+      parsedData.min = offenseCountMap.get(element.key);
+    }
+    if (offenseCountMap.get(element.key) >= parsedData.max) {
+      parsedData.max = offenseCountMap.get(element.key);
+    }
   });
+  console.log(offenseCountMap);
+  console.log('minL ' + parsedData.min);
+  console.log('maxnL ' + parsedData.max);
   parsedData.trimmedDataSet = Array.from(offenseCountMap.values());
   parsedData.labels = Array.from(offenseCountMap.keys());
   return parsedData;
