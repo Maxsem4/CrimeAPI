@@ -18,7 +18,7 @@
 
 # Figure A is an example of when there is data for the query you are running.
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs//crimeApi3.jpg)
+![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi3.jpg)
 
 # Figure B is an example of when there is no data for a query you are running.
 
@@ -34,4 +34,4 @@
 
 ## Below are pictures of how the website will display on a mobile device
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs//crimeApi6.jpg) ![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs//crimeApi7.jpg)
+![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi6.jpg) ![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi7.jpg)
