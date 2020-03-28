@@ -1,21 +1,23 @@
 ('use strict');
 
 function drawOffenseCountChart(
+  chartCanvasId,
   crimeData,
   labelHeading,
   graphTitle,
   max,
   min,
-  labels
+  labels,
+  graphType
 ) {
   //make sure the 404 image is hidden before painitng the chart
-  let $notFoundSpan = $('.' + 'offenseCountChart' + 'NotFound');
+  let $notFoundSpan = $('.' + chartCanvasId + 'NotFound');
   if (!$notFoundSpan.hasClass('hide')) {
     $notFoundSpan.addClass('hide');
   }
 
-  new Chart(document.getElementById('offenseCountChart'), {
-    type: 'line',
+  new Chart(document.getElementById(chartCanvasId), {
+    type: graphType,
     data: {
       labels: labels, //getLabelsForChart(),
       datasets: [
