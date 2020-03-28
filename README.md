@@ -37,4 +37,4 @@
 
 ## Below are pictures of how the website will display on a mobile device
 
-![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi6.JPG)    ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi7.JPG)    ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi8.JPG)
+![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi6.JPG)    ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi7.JPG)    ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi8.JPG)   ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi9.JPG)
