@@ -4,7 +4,7 @@ $('#searchBtn').click(getAndShowData);
   //select default radio button
  $(":radio[name='locationType'][value='national']").attr('checked', 'checked');
  $('#stateType').hide();
- $('#offType').hide();
+ $('#offType').show();
  $('#regionType').hide();
   radioButton()
  // getLocationName()
@@ -14,16 +14,16 @@ function radioButton() {
   $("input[name=locationType]:radio").click(function () {
       if ($('input[name=locationType]:checked').val() == "state") {
           $('#stateType').show();
-          $('#offType').hide();
+          $('#offType').show();
           $('#regionType').hide();
       } else if ($('input[name=locationType]:checked').val() == "regional") {
           $('#stateType').hide();
-          $('#offType').hide();
+          $('#offType').show();
           $('#regionType').show();
       }
       else if ($('input[name=locationType]:checked').val() == "national"){
       $('#stateType').hide();
-      $('#offType').hide();
+      $('#offType').show();
       $('#regionType').hide();
     }
   });
