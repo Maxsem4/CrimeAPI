@@ -1,4 +1,4 @@
-# CrimeAPI
+# CrimeAPI (Deployed at https://maxsem4.github.io/CrimeAPI)
 
 ## The first API this project makes use of is the Crime Data Explorer which uses data from the Crime Data API(https://crime-data-explorer.fr.cloud.gov/api) which is provided by the FBI . We decided to use this api to allow the public to know the trend's in crime rate amount of crimes,and types of crimes that occur. With that information we hope the public would be well informed regarding crime when buying a house, or moving.
 
@@ -12,17 +12,17 @@
 
 ## When you first navigate to the website this is the first screen you will see. The drop down menus that are presented to you are required fields that need to be selected. After selecting the state radio button you are presented with two drop down menus titled State and Offence that we have already selected a value from those drop down menus. You are than required to select a radio button in the bottom group (Age, Race, Sex) . After you make your selection you can click on submit and you are presented with two graphs.
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi2.jpg)
+![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi2.JPG)
 
 ## Below is a picture of the graphs that is displayed if your query returns any results .
 
 # Figure A is an example of when there is data for the query you are running.
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi3.jpg)
+![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi3.JPG)
 
 # Figure B is an example of when there is no data for a query you are running.
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi5.jpg)
+![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi5.JPG)
 
 ## Below are the urls that we query for our data from the FBI Crime Data Explorer
 
@@ -34,4 +34,4 @@
 
 ## Below are pictures of how the website will display on a mobile device
 
-![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi6.jpg) ![picture](https://github.com/Maxsem4/CrimeAPI/readmeImgs/crimeApi7.jpg)
+![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi6.JPG) ![picture](https://maxsem4.github.io/CrimeAPI/readmeImgs/crimeApi7.JPG)
