@@ -7,7 +7,6 @@ $('#searchBtn').click(getAndShowData);
  $('#offType').show();
  $('#regionType').hide();
   radioButton()
- // getLocationName()
 });
 
 function radioButton() {
@@ -59,24 +58,13 @@ function getLocationName(locationType) {
   let locationName = null;
   switch (locationType) {
     case 'national':
-      locationName = $('#regionType :selected').val();
-      //$("#regionType").hide();
- //     $('#stateType').show();
-   //       $('#offType').hide();
-     //     $('#regionType').hide();
-      //break;
+    break;
       
     case 'regional':
       locationName = $('#regionType :selected').val();
-      //$('#stateType').show();
-      //$('#offType').hide();
-      //$('#regionType').hide();
       break;
     case 'state':
       locationName = $('#stateType :selected').val();
-      //$('#stateType').show();
-      //$('#offType').hide();
-      //$('#regionType').hide();
       break;
     default:
       break;
@@ -87,7 +75,7 @@ function getLocationName(locationType) {
 function getCountByLocationObject(locationType, locationName) {
   let countByLocation;
   switch (locationType) {
-    case 'national':
+    case 'national':  
       countByLocation = new CountByLocation(true, false, null, null);
       break;
     case 'regional':
