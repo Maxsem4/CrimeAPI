@@ -1,8 +1,29 @@
 $(document).ready(function() {
   //define click handler for search buttons
   $('#searchBtn').click(getAndShowData);
+  //define click behaviour for clear button
+  $('#clearBtn').click(clearGraphsAndHeadings);
+  //add select listener for offensetype dropdown
+  defineSelectListenersForDropDowns();
   //select default radio button
+  manageRadioButtonDisplay();
+});
+
+function defineSelectListenersForDropDowns() {
+  $('#offType').change(function() {
+    hideElement('errorMsg', false);
+  });
+  $('#regionType').change(function() {
+    hideElement('errorMsg', false);
+  });
+  $('#stateType').change(function() {
+    hideElement('errorMsg', false);
+  });
+}
+
+function manageRadioButtonDisplay() {
   $(":radio[name='locationType'][value='national']").attr('checked', 'checked');
+  $(":radio[name='offProp'][value='age']").attr('checked', 'checked');
   $('#stateType')
     .parents('.section')
     .first()
@@ -13,7 +34,7 @@ $(document).ready(function() {
     .first()
     .addClass('hide');
   radioButton();
-});
+}
 
 function radioButton() {
   $('input[name=locationType]:radio').click(function() {
@@ -58,14 +79,60 @@ function hideRegionalDropDown() {
   }
 }
 
+function clearGraphsAndHeadings() {
+  hideElement('offenderPropChartNotFound', true);
+  hideElement('offenseCountChartNotFound', true);
+  hideElement('offenseCountHeading', false);
+  hideElement('offensePropHeading', false);
+  if (currentOffenseCountChart !== null) currentOffenseCountChart.destroy();
+  if (currentOffenderPropChart !== null) currentOffenderPropChart.destroy();
+}
+
+function hideElement(identifier, hideByClass) {
+  let selector = hideByClass ? '.' : '#';
+  selector = selector + identifier;
+  let domElemenet = $(selector);
+  if (!domElemenet.hasClass('hide')) {
+    domElemenet.addClass('hide');
+  }
+}
+
 function getAndShowData(event) {
   event.preventDefault();
+  //check if offesnetype is selcted
   //get the offense type from the drop-down
   let offenseType = $('#offType :selected').val();
+  if (offenseType === 'Select Offense') {
+    $('#errorMsg')
+      .children('span')
+      .text('Please select the offense type');
+    $('#errorMsg').removeClass('hide');
+    return;
+  }
   //get the location data
   let locationType = $("input[name='locationType']:radio:checked").val();
   //get the locationName
   let locationName = getLocationName(locationType);
+  if (
+    locationType === 'regional' &&
+    $('#regionType :selected').val() === 'Select Region'
+  ) {
+    $('#errorMsg')
+      .children('span')
+      .text('Please select a region');
+    $('#errorMsg').removeClass('hide');
+    return;
+  }
+  if (
+    locationType === 'state' &&
+    $('#stateType :selected').val() === 'Select State'
+  ) {
+    $('#errorMsg')
+      .children('span')
+      .text('Please select a state');
+    $('#errorMsg').removeClass('hide');
+    return;
+  }
   //get the offender property
   let offenderProp = $("input[name='offProp']:radio:checked").val();
   //fire off the query to get data
