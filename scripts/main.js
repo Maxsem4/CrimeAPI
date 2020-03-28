@@ -28,8 +28,6 @@ function radioButton() {
   });
 };
 
-
-
 function getAndShowData(event) {
   event.preventDefault();
   //get the offense type from the drop-down
@@ -54,12 +52,10 @@ function getAndShowData(event) {
 }
 
 function getLocationName(locationType) {
-  
   let locationName = null;
   switch (locationType) {
     case 'national':
     break;
-      
     case 'regional':
       locationName = $('#regionType :selected').val();
       break;
@@ -75,7 +71,7 @@ function getLocationName(locationType) {
 function getCountByLocationObject(locationType, locationName) {
   let countByLocation;
   switch (locationType) {
-    case 'national':  
+    case 'national':
       countByLocation = new CountByLocation(true, false, null, null);
       break;
     case 'regional':
