@@ -8,7 +8,7 @@
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="bulma.min.css" />
+    <link rel="stylesheet" href="bulma.css" />
     <title>Crime App</title>
   </head>
   <body>
@@ -140,7 +140,7 @@
           <div class="container">
             <div class="select" id="offType">
               <select>
-                <option>Select Offence</option>
+                <option>Select Offense</option>
                 <option>Aggravated Assault</option>
                 <option value="burglary">Burglary</option>
                 <option value="larceny">Larceny</option>
@@ -187,26 +187,32 @@
       <div class="column">
         <section class="section">
           <div class="container">
-            <h1 class="title">Stats Section</h1>
-            <h2 class="subtitle">
-              A simple container to divide your page into
-              <strong>sections</strong>, like the one you're currently reading
-            </h2>
+            <h1 class="title">Graph1 Section</h1>
+            <div>
+              <div class="hide has-text-danger offenseCountChartNotFound">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="title is-5">
+                  No data found. Please try another query.
+                </span>
+              </div>
+              <canvas width="600" height="400" id="offenseCountChart"></canvas>
+              <!-- <canvas id="crimeGraph2"></canvas> -->
+            </div>
           </div>
         </section>
         <section class="section">
           <div class="container">
-            <h1 class="title">Graph Section</h1>
-            <h2 class="subtitle">
-              <div>
-                <canvas
-                  width="600"
-                  height="400"
-                  id="offenseCountChart"
-                ></canvas>
-                <!-- <canvas id="crimeGraph2"></canvas> -->
+            <h1 class="title">Graph2 Section</h1>
+            <div>
+              <div class="hide has-text-danger offenderPropChartNotFound">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="title is-5">
+                  No data found. Please try another query.
+                </span>
               </div>
-            </h2>
+              <canvas width="600" height="400" id="offenderProp"></canvas>
+              <!-- <canvas id="crimeGraph2"></canvas> -->
+            </div>
           </div>
         </section>
       </div>
@@ -228,8 +234,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="./chartHelper.js"></script>
-    <script src="./crimapi.js"></script>
-    <script src="main.js"></script>
+    <script src="./scripts/chartHelper.js"></script>
+    <script src="./scripts/crimeApi.js"></script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>

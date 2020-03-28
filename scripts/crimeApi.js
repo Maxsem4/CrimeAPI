@@ -55,12 +55,14 @@ const crimeApi = {
         }
         let parsedData = parseOffenseCountDataSet(apiDataObj);
         drawOffenseCountChart(
+          'offenseCountChart',
           parsedData.trimmedDataSet,
-          'Crime Count',
-          'Crimr Count Heading',
+          'Offense Count',
+          `Recent Trend for ${offenseType} in  ${countByLocation.getLocationType()}`,
           parsedData.max,
           parsedData.min,
-          parsedData.labels
+          parsedData.labels,
+          'line'
         );
       })
       .catch(error => {
@@ -83,10 +85,21 @@ const crimeApi = {
       .then(parseResponse)
       .then(function(data) {
         console.log(data);
+        let parsedData = parseOffenderPropTypeData(data);
+        drawOffenseCountChart(
+          'offenderProp',
+          parsedData.trimmedDataSet,
+          'Offense Count by Offender property :' + offenderProperty,
+          `Recent Trend for ${offenderProperty} in  ${countByLocation.getLocationType()}`,
+          parsedData.max,
+          parsedData.min,
+          parsedData.labels,
+          'bar'
+        );
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
-        // return erroHandler(error);
+        noDataFound('offenderProp');
       });
   },
 
@@ -115,8 +128,46 @@ const parseResponse = function(response) {
   return response.json();
 };
 
+function parseOffenderPropTypeData(offernderCrimeObj) {
+  const parsedData = {
+    trimmedDataSet: [],
+    labels: [],
+    min: 9999,
+    max: 0
+  };
+  let filteredData = offernderCrimeObj.data.sort(function(a, b) {
+    return b.data_year - a.data_year;
+  });
+  let slicingINdex = 10 * offernderCrimeObj.keys.length - 1;
+  filteredData = filteredData
+    .slice(
+      0,
+      filteredData.length <= slicingINdex ? filteredData.length : slicingINdex
+    )
+    .reverse();
+  let offenseCountMap = new Map();
+
+  filteredData.forEach(element => {
+    if (element.value <= parsedData.min) {
+      parsedData.min = element.value;
+    }
+    if (element.value >= parsedData.max) {
+      parsedData.max = element.value;
+    }
+    if (typeof offenseCountMap.get(element.key) === 'undefined') {
+      offenseCountMap.set(element.key, 0);
+    } else {
+      //get current count
+      let count = offenseCountMap.get(element.key);
+      offenseCountMap.set(element.key, count + element.value);
+    }
+  });
+  parsedData.trimmedDataSet = Array.from(offenseCountMap.values());
+  parsedData.labels = Array.from(offenseCountMap.keys());
+  return parsedData;
+}
+
 function parseOffenseCountDataSet(crimeDataObj) {
-  console.log(crimeDataObj);
   const parsedData = {
     trimmedDataSet: [],
     labels: [],
@@ -186,11 +237,11 @@ class CountByLocation {
 
   getLocationType() {
     if (this.getNationalCount) {
-      return 'national';
+      return 'United States Of America';
     } else if (this.getCountByRegion) {
-      return `region ${this.regionName}`;
+      return `the region ${this.regionName}`;
     } else {
-      return `state ${this.statecode}`;
+      return `the state ${this.statecode}`;
     }
   }
 }
