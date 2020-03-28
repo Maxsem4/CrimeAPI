@@ -1,3 +1,19 @@
 .hide {
   display: none;
 }
+
+.dropDownSection {
+  padding-top: 1rem !important;
+  padding-bottom: 8px !important;
+}
+
+.topSection {
+  padding-bottom: 7px !important;
+}
+
+#searchBtnDiv {
+  padding-top: 20px;
+}
+.menuTitle {
+  margin-right: 5px;
+}
